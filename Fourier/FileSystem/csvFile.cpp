@@ -1,6 +1,50 @@
 #include "csvFile.h"
 #include <string>
+#define TEXT_MAX 10
 using namespace std;
+
+void swapText(char* text) {
+	char swapText[TEXT_MAX + 1];
+	for (int i = TEXT_MAX; i >= 0; --i) {
+		swapText[TEXT_MAX - i] = text[i];
+	}
+
+	for (int i = 0; i <= TEXT_MAX; ++i) {
+		text[i] = swapText[i];
+	}
+}
+
+double textToDouble(char* text) {
+	bool flag = false;
+	double d = 0, md = 0;
+	int count = 0;
+	for (int i = 0; i < TEXT_MAX; ++i) {
+		if (text[i] == '.') {
+			flag = true;
+		}
+		else {
+			if (flag == false) {
+				if (text[i] < '0' || text[i] > '9') {
+					return d;
+				}
+				else {
+					d *= 10;
+					d += text[i] - '0';
+				}
+			}
+			else if (flag == true) {
+				if (text[i] <= '9' && text[i] >= '0') {
+					md *= 10;
+					count++;
+					md += text[i] - '0';
+				}
+				else {
+					return d + md * pow(0.1, count);
+				}
+			}
+		}
+	}
+}
 
 csvFile::csvFile(const char *filename) : File(filename),
 	mWidth(0),
@@ -20,9 +64,10 @@ csvFile::csvFile(const char *filename) : File(filename),
 		}
 		else if (mData[i] == '\n') {
 			++height;
-			if (width > maxWidth) {
-				maxWidth = width;
+			if (width + 1 > maxWidth) {
+				maxWidth = width + 1;
 			}
+			width = 0;
 		}
 	}
 
@@ -33,46 +78,46 @@ csvFile::csvFile(const char *filename) : File(filename),
 	//効率は悪いが人間的に分かり易い
 	mDouble.setSize(mWidth, mHeight);
 
-	char text[11]; int j = 0;	//一時的に文字をためておくのに必要な変数
-	string str;					//横着して文字列→doubleをstringに任せようという魂胆
-	int x = 0, y = 0;			//エクセルのデータを2次元で扱いたいので、位置を決めるのに必要な変数を用意
+	char text[TEXT_MAX + 1]; int j = TEXT_MAX;	//一時的に文字をためておくのに必要な変数
+	//string str;									//横着して文字列→doubleをstringに任せようという魂胆
+	int x = 0, y = 0;							//エクセルのデータを2次元で扱いたいので、位置を決めるのに必要な変数を用意
 	for (int i = 0; i < mSize; ++i) {
-		if (j == 0) {
-			for (int k = 0; k < 10; ++k) {
+		if (j == TEXT_MAX) {
+			for (int k = 0; k <= TEXT_MAX; ++k) {
 				//全て「0」の文字で埋める
-				text[k] = '0';
+				text[k] = 'a';
 			}
-			//最後尾を明示
-			text[10] = '\0';
+			text[TEXT_MAX] = '0';
 		}
 
 		if (mData[i] == ',') {
-			str = text;
 			//テキストをdoubleに変換
-			mDouble(x, y) = std::stod(str);
+			swapText(text);
+			mDouble(x, y) = textToDouble(text);
 			x++;
-			j = 0;
+			j = TEXT_MAX;
 		}
 		else if (mData[i] == '\n') {
-			str = text;
 			//テキストをdoubleに変換
-			mDouble(x, y) = std::stod(str);
+			swapText(text);
+			mDouble(x, y) = textToDouble(text);
 			//\r\n的な処理
 			y++;
 			x = 0;
-			j = 0;
+			j = TEXT_MAX;
 		}
 		else {
 			text[j] = mData[i];
-			if (j < 10) {
-				j++;
+			if (j > 0) {
+				j--;
 			}
 		}
 	}
 }
 
-
 csvFile::~csvFile()
 {
 
 }
+
+

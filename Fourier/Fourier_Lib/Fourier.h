@@ -4,8 +4,8 @@
 class Fourier
 {
 public:
-	//doubleのデータを受け取ってそれを使う
-	Fourier(double *data);
+	//doubleのデータを受け取ってそれを使う（g(n)を受け取る）
+	Fourier(double *data, int size);
 	~Fourier();
 
 	//位置指定をして特定のデータを受け取る
