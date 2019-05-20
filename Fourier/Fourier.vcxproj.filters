@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fourier_Lib">
+      <UniqueIdentifier>{a63fd9e5-1dc3-4f3f-b695-bd2a0f279746}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSystem">
+      <UniqueIdentifier>{9c36d54d-5c4c-404d-bf8b-dd5818ee7f0c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Fourier_Lib\Fourier.cpp">
+      <Filter>Fourier_Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem\csvFile.cpp">
+      <Filter>FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem\File.cpp">
+      <Filter>FileSystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Fourier_Lib\Fourier.h">
+      <Filter>Fourier_Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Array2D.h" />
+    <ClInclude Include="FileSystem\csvFile.h">
+      <Filter>FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystem\File.h">
+      <Filter>FileSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
