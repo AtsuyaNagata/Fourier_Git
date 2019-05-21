@@ -20,7 +20,7 @@ Fourier::Fourier(double *data, int size):
 
 	//Ck‚ğsin¬•ª‚Æcos¬•ª‚É•ª‚¯‚ÄŒvZ‚·‚é
 	double *CkSin = new double[mSize];
-	double* CkCos = new double[mSize];
+	double *CkCos = new double[mSize];
 
 	for (int i = 0; i < mSize; ++i) {
 		CkSin[i] = 0;

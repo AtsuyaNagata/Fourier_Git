@@ -1,5 +1,7 @@
 #include "csvFile.h"
+#include "Array2D.h"
 #include <string>
+#include <fstream>
 #define TEXT_MAX 10
 using namespace std;
 
@@ -29,14 +31,14 @@ double textToDouble(char* text) {
 				}
 				else {
 					d *= 10;
-					d += text[i] - '0';
+					d += (double)(text[i] - '0');
 				}
 			}
 			else if (flag == true) {
 				if (text[i] <= '9' && text[i] >= '0') {
 					md *= 10;
 					count++;
-					md += text[i] - '0';
+					md += (double)(text[i] - '0');
 				}
 				else {
 					return d + md * pow(0.1, count);
@@ -120,4 +122,24 @@ csvFile::~csvFile()
 
 }
 
-
+void csvFile::csvWrite(const char* filename, Array2D<double> data)
+{
+	ofstream out(filename, ofstream::binary);
+	if (out) {
+		for (int i = 0; i < data.getHeight(); ++i) {
+			for (int j = 0; j < data.getWidth(); ++j) {
+				//データを書き込む
+				out << data(j, i);
+				if (j < data.getWidth()) {
+					out << ",";
+				}
+			}
+			out << "\n";
+		}
+	}
+	else {
+		//CRT_ERROR : ダイアログまで出す。通常は_CRT_WARNを指定
+		_RPT0(_CRT_ERROR, "can't open file.\n");
+		return;
+	}
+}

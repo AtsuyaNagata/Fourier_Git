@@ -18,6 +18,8 @@ public:
 	int getWidth() { return mWidth; }
 	int getHeight() { return mHeight; }
 
+	static void csvWrite(const char* filename, Array2D<double> data);
+
 private:
 	int mWidth, mHeight;		//Å‘å‚Ì‚‚³‚Æ‰¡•‚Ì•Ï”
 	Array2D<double> mDouble;

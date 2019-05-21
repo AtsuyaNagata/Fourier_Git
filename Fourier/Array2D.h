@@ -3,6 +3,7 @@
 
 //二次元配列クラス
 //これを使う時にはTのところにintとかboolとか入れて使う。自作のオブジェクトを入れてもよい
+//これを使う時にはTのところにintとかboolとか入れて使う。自作のオブジェクトを入れてもよい
 template< class T > class Array2D {
 public:
 	Array2D() : mArray(0), mSize0(0), mSize1(0) {}
@@ -18,6 +19,15 @@ public:
 		delete[] mArray;
 		mArray = 0;
 	}
+
+	//2次元の横幅と縦幅を獲得
+	int getWidth() const {
+		return mSize0;
+	}
+	int getHeight() const {
+		return mSize1;
+	}
+
 	void setSize(int size0, int size1) {
 		delete[] mArray;
 		mArray = 0;
@@ -31,6 +41,7 @@ public:
 	const T& operator()(int index0, int index1) const {
 		return mArray[index1 * mSize0 + index0];
 	}
+
 private:
 	T* mArray;
 	int mSize0;

@@ -18,5 +18,7 @@ int main()
 		cout << endl;
 	}
 
+	csvFile::csvWrite("outPut.csv", f.dData());
+
 	return 0;
 }
