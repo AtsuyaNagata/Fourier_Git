@@ -23,12 +23,14 @@
     <ClCompile Include="FileSystem\File.cpp" />
     <ClCompile Include="Fourier_Lib\Fourier.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Wave_Lib\CreateWave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array2D.h" />
     <ClInclude Include="FileSystem\csvFile.h" />
     <ClInclude Include="FileSystem\File.h" />
     <ClInclude Include="Fourier_Lib\Fourier.h" />
+    <ClInclude Include="Wave_Lib\CreateWave.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -101,7 +103,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\a_nag\Documents\C++勉強\Fourier\Fourier;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\a_nag\Documents\C++勉強\Fourier_Git\Fourier;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
