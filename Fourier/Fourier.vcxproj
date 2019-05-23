@@ -23,14 +23,12 @@
     <ClCompile Include="FileSystem\File.cpp" />
     <ClCompile Include="Fourier_Lib\Fourier.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Wave_Lib\CreateWave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array2D.h" />
     <ClInclude Include="FileSystem\csvFile.h" />
     <ClInclude Include="FileSystem\File.h" />
     <ClInclude Include="Fourier_Lib\Fourier.h" />
-    <ClInclude Include="Wave_Lib\CreateWave.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

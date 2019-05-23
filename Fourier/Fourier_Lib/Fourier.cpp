@@ -7,7 +7,7 @@
 using namespace std;
 
 //値の初期化
-Fourier::Fourier(double *data, int size):
+Fourier::Fourier(const double *data, int size):
 	mData(0), mSize(0),
 	mCkValue(0), mCkRange(0)
 {
@@ -16,7 +16,7 @@ Fourier::Fourier(double *data, int size):
 	mData		=	new double[mSize];
 	mCkValue	=	new double[mSize];
 	mCkRange	=	new double[mSize];
-	memcpy(mData, data, mSize);			//dataの中身をクラスの中に取り入れる
+	memcpy(mData, data, (mSize * 8));			//dataの中身をクラスの中に取り入れる
 
 	//Ckをsin成分とcos成分に分けて計算する
 	double *CkSin = new double[mSize];
@@ -26,14 +26,14 @@ Fourier::Fourier(double *data, int size):
 		CkSin[i] = 0;
 		CkCos[i] = 0;
 		for (int j = 0; j < mSize; ++j) {
-			CkSin[i] += mData[j] * -(sin(2 * PI / mSize * i * j));
-			CkCos[i] += mData[j] * cos(2 * PI / mSize * i * j);
+			CkSin[i] += mData[j] * -(sin((2 * PI / mSize) * i * j));
+			CkCos[i] += mData[j] * cos((2 * PI / mSize) * i * j);
 		}
 		CkSin[i] /= mSize;
 		CkCos[i] /= mSize;
-
 		mCkValue[i] = sqrt(CkSin[i] * CkSin[i] + CkCos[i] * CkCos[i]);	//√(Cksin^2 + Ckcos^2)
 		mCkRange[i] = atan2(CkSin[i], CkCos[i]);	//tan^-1(y/x)
+		//printf("%lf  ", mCkValue[i]);
 	}
 
 	

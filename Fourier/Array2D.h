@@ -3,7 +3,6 @@
 
 //二次元配列クラス
 //これを使う時にはTのところにintとかboolとか入れて使う。自作のオブジェクトを入れてもよい
-//これを使う時にはTのところにintとかboolとか入れて使う。自作のオブジェクトを入れてもよい
 template< class T > class Array2D {
 public:
 	Array2D() : mArray(0), mSize0(0), mSize1(0) {}
