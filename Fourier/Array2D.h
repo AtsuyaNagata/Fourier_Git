@@ -34,6 +34,23 @@ public:
 		mSize1 = size1;
 		mArray = new T[size0 * size1];
 	}
+
+	//「=」での代入処理
+	void operator=(const Array2D& other) {
+		if (mArray) {
+			//一旦中身を破壊して...
+			delete[] mArray;
+			mArray = 0;
+		}
+		//コピーコンストラクタと一緒な処理をおこなう！
+		mSize0 = other.mSize0;
+		mSize1 = other.mSize1;
+		mArray = new T[mSize0 * mSize1];
+		for (int i = 0; i < mSize0 * mSize1; ++i) {
+			mArray[i] = other.mArray[i];
+		}
+	}
+
 	T& operator()(int index0, int index1) {
 		return mArray[index1 * mSize0 + index0];
 	}
