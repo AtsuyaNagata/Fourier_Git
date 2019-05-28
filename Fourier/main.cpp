@@ -12,17 +12,8 @@ using namespace std;
 double a_Sin(double t) {
 	return sin(2 * PI * t);
 }
-double b_Sin(double t) {
-	return sin(2 * PI * t);
-}
-double c_Sin(double t) {
-	return sin(2 * PI * t);
-}
 double d_Sin(double t) {
 	return sin(4 * PI * t);
-}
-double e_Sin(double t) {
-	return sin(2 * PI * t);
 }
 
 //実験資料図1の矩形波
@@ -55,15 +46,8 @@ Array2D<double> getWaveData(double (*func)(double), double minT, double maxT, do
 
 int main()
 {
-	csvFile f("SampleCsv.csv");
-
-	if (!f.data()) {
-		return 1;
-	}
-
-	double (*func[5])(double t) = { a_Sin , b_Sin , c_Sin , d_Sin , e_Sin };
 	//第一引数には関数ポインタを入れてやる
-	Array2D<double> Data = getWaveData(func[0], 0.0, 5.0, 1.0 / 10);
+	Array2D<double> Data = getWaveData(a_Sin, 0.0, 2.0, 1.0 / 100);
 
 	double* fourierData;
 	fourierData = new double[Data.getHeight()];
@@ -71,18 +55,19 @@ int main()
 		fourierData[i] = Data(0, i);
 	}
 
-	Fourier fourier(fourierData, Data.getHeight()* Data.getWidth());
+	Fourier fourier(fourierData, Data.getHeight());
 
 	double* restoreFunc = new double[fourier.size()];
 	for (int i = 0; i < fourier.size(); ++i) {
 		restoreFunc[i] = 0.0;
-		const double* CkVal = fourier.CkValue(), *CkRang = fourier.CkValue();
 		for (int j = 0; j < fourier.size(); ++j) {
-			restoreFunc[i] += CkVal[j] * cos(CkRang[j] + 2 * PI / fourier.size() * i * j);
-			printf("%lf  ", restoreFunc[i]);
+			restoreFunc[i] += fourier.CkValue()[j] * cos(fourier.CkRange()[j] + 2 * PI / (double)fourier.size() * (double)i * (double)j);
+			//printf("%lf  ", fourier.CkValue()[i]);
 		}
 	}
-	csvFile::csvWrite("outPut.csv", fourierData, fourier.size());
+
+	csvFile::csvWrite("outPut.csv", fourier.CkRange(), fourier.size());
 
 	return 0;
 }
+

@@ -153,6 +153,7 @@ void csvFile::csvWrite(const char* filename, const double *data, int size)
 			out << data[i] << ",";
 		}
 		out << "\n";
+		out.close();
 	}
 	else {
 		//CRT_ERROR : ダイアログまで出す。通常は_CRT_WARNを指定

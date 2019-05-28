@@ -30,11 +30,11 @@ Fourier::Fourier(const double *data, int size):
 		CkSin[i] = 0;
 		CkCos[i] = 0;
 		for (int j = 0; j < mSize; ++j) {
-			CkSin[i] += mData[j] * -(sin((2 * PI / mSize) * i * j));
-			CkCos[i] += mData[j] * cos((2 * PI / mSize) * i * j);
+			CkSin[i] += mData[j] * (-1 * sin((2 * PI / mSize) * (double)i * (double)j));
+			CkCos[i] += mData[j] * cos((2 * PI / mSize) * (double)i * (double)j);
 		}
-		CkSin[i] /= mSize;
-		CkCos[i] /= mSize;
+		CkSin[i] /= (double)mSize;
+		CkCos[i] /= (double)mSize;
 		mCkValue[i] = sqrt(CkSin[i] * CkSin[i] + CkCos[i] * CkCos[i]);	//ã(Cksin^2 + Ckcos^2)
 		mCkRange[i] = atan2(CkSin[i], CkCos[i]);	//tan^-1(y/x)
 	}
