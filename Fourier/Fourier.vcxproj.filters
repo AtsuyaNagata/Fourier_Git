@@ -7,9 +7,6 @@
     <Filter Include="FileSystem">
       <UniqueIdentifier>{9c36d54d-5c4c-404d-bf8b-dd5818ee7f0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Wave_Lib">
-      <UniqueIdentifier>{f2764b94-2227-4ac8-be8b-1927e6f85659}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -22,9 +19,6 @@
     <ClCompile Include="FileSystem\File.cpp">
       <Filter>FileSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Wave_Lib\CreateWave.cpp">
-      <Filter>Wave_Lib</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fourier_Lib\Fourier.h">
@@ -36,9 +30,6 @@
     </ClInclude>
     <ClInclude Include="FileSystem\File.h">
       <Filter>FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Wave_Lib\CreateWave.h">
-      <Filter>Wave_Lib</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

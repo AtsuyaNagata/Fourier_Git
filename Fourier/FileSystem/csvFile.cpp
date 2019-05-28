@@ -46,6 +46,7 @@ double textToDouble(char* text) {
 			}
 		}
 	}
+	return d + md * pow(0.1, count);
 }
 
 csvFile::csvFile(const char *filename) : File(filename),
@@ -136,6 +137,23 @@ void csvFile::csvWrite(const char* filename, Array2D<double> data)
 			}
 			out << "\n";
 		}
+	}
+	else {
+		//CRT_ERROR : ダイアログまで出す。通常は_CRT_WARNを指定
+		_RPT0(_CRT_ERROR, "can't open file.\n");
+		return;
+	}
+}
+
+void csvFile::csvWrite(const char* filename, const double *data, int size)
+{
+	ofstream out(filename, ofstream::binary);
+	if (out) {
+		for (int i = 0; i < size; ++i) {
+			out << data[i] << ",";
+		}
+		out << "\n";
+		out.close();
 	}
 	else {
 		//CRT_ERROR : ダイアログまで出す。通常は_CRT_WARNを指定

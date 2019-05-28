@@ -5,7 +5,8 @@ class Fourier
 {
 public:
 	//doubleのデータを受け取ってそれを使う（g(n)を受け取る）
-	Fourier(double *data, int size);
+	Fourier(const double* data, int size);
+	Fourier();
 	~Fourier();
 
 	//位置指定をして特定のデータを受け取る
@@ -13,11 +14,18 @@ public:
 	double CkRange(int) const;
 
 	//ポインタでごっそり受け取る
-	const double const * CkValue() const {
+	const double* const CkValue() const {
 		return mCkValue;
 	}
-	const double const * CkRange() const {
+	const double* const CkRange() const {
 		return mCkRange;
+	}
+
+	//「=」の処理
+	void operator=(Fourier f);
+
+	int size() {
+		return mSize;
 	}
 
 private:
