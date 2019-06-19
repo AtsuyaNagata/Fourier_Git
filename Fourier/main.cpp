@@ -66,6 +66,9 @@ int main()
 		}
 	}
 
+	//ˆê‚Â‚Ã‚Â‚µ‚©¡‚Ío—ˆ‚È‚¢
+	//csvFile::csvWrite("outPut.csv", fourier.CkRange(), fourier.size());
+	//csvFile::csvWrite("outPut.csv", fourier.CkRange(), fourier.size());
 	csvFile::csvWrite("outPut.csv", fourier.CkRange(), fourier.size());
 
 	return 0;
