@@ -94,7 +94,7 @@ Fourier::Fourier(const double* data, int size) :
 	CkSin(0), CkCos(0),
 	Wsin(0), Wcos(0)
 {
-	mSize = pow(2, (int)(log2(size - 1) + 1));
+	mSize = pow(2, (int)(log2(size - 1)));
 	mDifference = mSize - size;
 
 	//double‚Ìƒf[ƒ^‚ğó‚¯æ‚é

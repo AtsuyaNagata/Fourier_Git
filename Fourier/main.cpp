@@ -56,7 +56,7 @@ Array2D<double> getWaveData(double (*func)(double), double minT, double maxT, do
 int main()
 {
 	//‘æˆêˆø”‚É‚ÍŠÖ”ƒ|ƒCƒ“ƒ^‚ğ“ü‚ê‚Ä‚â‚é
-	Array2D<double> Data = getWaveData(a_Sin, 0.0, 5.12, 1.0 / 50);
+	Array2D<double> Data = getWaveData(s_a_function, 0.0, 5.13, 1.0 / 100);
 	//Array2D<double> Data2 = getWaveData(a_function, 0.0, 5.0, 1.0 / 50);
 
 	double* fourierData;
@@ -74,7 +74,7 @@ int main()
 	*/
 
 	double* restoreFunc = new double[fourier.size()];
-	for (int i = 0; i < fourier.size() - fourier.difference(); ++i) {
+	for (int i = 0; i < fourier.size(); ++i) {
 		restoreFunc[i] = 0.0;
 		for (int j = 0; j < fourier.size(); ++j) {
 			restoreFunc[i] += fourier.CkValue()[j] * cos(fourier.CkRange()[j] + 2 * PI / (double)fourier.size() * (double)i * (double)j);
