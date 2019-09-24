@@ -1,14 +1,14 @@
 #ifndef _FILE_SYSTEM_CSV_H_
 #define _FILE_SYSTEM_CSV_H_
 
-#include "FileSystem/File.h"
+#include "File.h"
 #include "Array2D.h"
 
 class csvFile : public File
 {
 public:
 	//コンストラクタ
-	csvFile(const char *filename);
+	csvFile(const char* filename);
 	~csvFile();
 
 	Array2D<double> dData() {
@@ -18,7 +18,9 @@ public:
 	int getWidth() { return mWidth; }
 	int getHeight() { return mHeight; }
 
-	static void csvWrite(const char* filename, Array2D<double> data);
+	template<typename T>
+	static void csvWrite(const char* filename, Array2D<T>& data);
+	static void csvWrite(const char* filename, Array2D<double>& data);
 	static void csvWrite(const char* filename, const double* data, int size);
 
 private:
